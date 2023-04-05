@@ -1,5 +1,7 @@
+#Importação de biblioteca para criar uma tabela com os resultados
 from tabulate import tabulate
 
+#Criação da classe funcionarios 
 class Funcinarios: 
     def __init__(self, nome, horas, turno, categoria):
         self.nome = nome
@@ -7,9 +9,7 @@ class Funcinarios:
         self.turno = turno
         self.categoria = categoria
         
-    def Print (self):
-        print({self.nome}, {self.horas}, {self.turno}, {self.categoria})
-    
+#Função que valida os dados informados 
     def Validar(self, lista):
         if ((self.turno == 'M' or self.turno == 'V' or self.turno == 'N') and (self.categoria == 'O' or self.categoria == 'G')):
            print("FUNCIONARIO VALIDO, ele será adicionado a lista")
@@ -17,6 +17,7 @@ class Funcinarios:
         else:
             print("FUNCIONARIO INVALIDO, ele não será adiconado a lista")
     
+#Função que calcula o salario com base nas informações 
     def Calcular(self, tabela):
         if self.categoria == "G":
             if self.turno == "N":
@@ -36,16 +37,19 @@ class Funcinarios:
         
                 
         
-           
+ #Definindo as arrays           
 funcionarios = []
 tabela = [['Nome','Turno','Horas Trabalhadas', 'Salario Horas', 'Salario Final' ]]
 
+#Loop while para a coleta de informação
 while True:
     novo = Funcinarios(str(input("Nome do funcionario: ")), int(input("Horas trabalhados no mês: ")), str(input("Turno: ")).upper(), str(input("Categoria: ")).upper())
     novo.Validar(funcionarios)
     if str(input("Deseja adicionar outro funcionario? ")).upper() != "SIM": break
 
+#Loop for para realziar o calculo de todos os funcionarios que estão na lista  
 for i in funcionarios:
     i.Calcular(tabela)
     
+#Print do resultado em tabela 
 print(tabulate(tabela))
